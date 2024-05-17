@@ -16,11 +16,14 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.getElementById('app').appendChild(renderer.domElement);
 
-  // Cube setup (temporary)
-  const geometry = new THREE.BoxGeometry();
-  const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-  const cube = new THREE.Mesh(geometry, material);
-  scene.add(cube);
+  // create and add a resistor to the scene
+  const resistor = new Resistor();
+  scene.add(res.getMesh());
+
+// Create and add a capacitor to the scene
+const capacitor = new Capacitor();
+capacitor.getMesh().position.x = 2; // Position it to the right of the resistor
+scene.add(capacitor.getMesh());
 
   // Render loop
   function animate() {
